@@ -30,13 +30,13 @@
                     <li class="mb-4">
                       <ul class="d-flex align-items-center justify-content-center justify-content-lg-start gap-3">
                         <li class="h3 mb-0"><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-                        <li>Kaldhara, Kathmandu, Nepal</li>
+                        <li>Mandala Building, Kaldhara, Kathmandu, Nepal</li>
                       </ul>
                     </li>
                     <li class="mb-4">
                       <ul class="d-flex align-items-center gap-3 justify-content-center justify-content-lg-start">
                         <li class="h3 mb-0"><i class="fa fa-phone" aria-hidden="true"></i></li>
-                        <li>9860584778 <a href="tel:9860584778" class="d-block small primary">For information</a></li>
+                        <li>980-1388899 <a href="tel:980-1388899" class="d-block small primary">For information</a></li>
                       </ul>
                     </li>
                   </ul>

@@ -124,7 +124,6 @@ class MainController extends Controller
 
         $videos = Video::orderBy('id', 'asc')
             ->get()
-            ->paginate(4)
             ->shuffle();
 
         $featuredPhotos = FeaturedPhoto::orderBy('id', 'asc')->get();

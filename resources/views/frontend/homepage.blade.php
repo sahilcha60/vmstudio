@@ -86,8 +86,8 @@
                                 <div class="project-img position-relative">
                                     <a href="{{ route('spotlight') }}">
                                         <span class="overlay"></span>
-                                        <img src="{{ asset('storage/' . $firstImage) }}" 
-                                             alt="{{ $spotlight->name }}" 
+                                        <img src="{{ asset('storage/' . $firstImage) }}"
+                                             alt="{{ $spotlight->name }}"
                                              class="img-fluid">
                                     </a>
                                 </div>
@@ -128,10 +128,10 @@
                           @if (!empty($image->image_url[0]))
                               <div class="col-lg-3 col-md-4 col-sm-6">
                                   <div class="project-img position-relative">
-                                      <a href="{{ route('portfolio.single', $image->id) }}">
+                                      <a href="{{ route('portfolio.single', ['slug' => $category->slug]) }}">
                                           <span class="overlay"></span>
-                                          <img src="{{ asset('storage/' . $image->image_url[0]) }}" 
-                                                alt="{{ $image->caption ?? $category->name }}" 
+                                          <img src="{{ asset('storage/' . $image->image_url[0]) }}"
+                                                alt="{{ $image->caption ?? $category->name }}"
                                                 class="img-fluid">
                                       </a>
                                   </div>

@@ -65,10 +65,10 @@
                             <div class="seperator bg-primary w-25 m-auto mb-4" style="height:2px;"></div>
                             <ul class="white text-start">
                                 <li class="mb-4">
-                                    <i class="fa fa-map-marker me-2"></i> Kaldhara, Kathmandu, Nepal
+                                    <i class="fa fa-map-marker me-2"></i> Mandala Building, Kaldhara, Kathmandu, Nepal
                                 </li>
                                 <li class="mb-4">
-                                    <i class="fa fa-phone me-2"></i> +977 9860584778
+                                    <i class="fa fa-phone me-2"></i> +977 980-1388899<a href="tel:980-1388899" class="d-block small primary">For information</a>
                                 </li>
                             </ul>
                         </div>

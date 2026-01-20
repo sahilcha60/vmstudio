@@ -17,8 +17,8 @@
             <h4 class="white mb-4">Quick Links</h4>
             <ul>
             <li class="mb-3"><a href="{{route('about')}}"><i class="fa fa-long-arrow-right me-2" aria-hidden="true"></i>About Us</a></li>
-            <li class="mb-3"><a href="{{ route('spotlight') }}"><i class="fa fa-long-arrow-right me-2" aria-hidden="true"></i>Spotlight</a></li> 
-            <li class="mb-3"><a href="{{ route('spotlight') }}"><i class="fa fa-long-arrow-right me-2" aria-hidden="true"></i>Stories</a></li> 
+            <li class="mb-3"><a href="{{ route('spotlight') }}"><i class="fa fa-long-arrow-right me-2" aria-hidden="true"></i>Spotlight</a></li>
+            <li class="mb-3"><a href="{{ route('spotlight') }}"><i class="fa fa-long-arrow-right me-2" aria-hidden="true"></i>Stories</a></li>
             <li class="mb-3"><a href="{{route('portfolio')}}"><i class="fa fa-long-arrow-right me-2" aria-hidden="true"></i>Portfolio</a></li>
             <li><a href="{{route('contact')}}"><i class="fa fa-long-arrow-right me-2" aria-hidden="true"></i>Contact Us</a></li>
             </ul>
@@ -31,13 +31,13 @@
             <li class="mb-4">
                 <ul class="d-flex align-items-center gap-3">
                 <li class="h3 mb-0"><i class="fa fa-map-marker" aria-hidden="true"></i></li>
-                <li>Kaldhara, Kathmandu, Nepal</li>
+                <li>Mandala Building, Kaldhara, Kathmandu, Nepal</li>
                 </ul>
             </li>
             <li class="mb-4">
                 <ul class="d-flex align-items-center gap-3">
                 <li class="h3 mb-0"><i class="fa fa-phone" aria-hidden="true"></i></li>
-                <li>9860584778 <a href="tel:9860584778" class="d-block small primary">For information</a></li>
+                <li>980-1388899 <a href="tel:980-1388899" class="d-block small primary">For information</a></li>
                 </ul>
             </li>
             </ul>
