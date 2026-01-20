@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Testimonials\Schemas;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
@@ -41,9 +41,11 @@ class TestimonialForm
                         ->save(storage_path('app/public/'.$path));
 
                     return $path;
-                }),
+                })
+                ->columnSpanFull()
+                ->required(),
 
-            Textarea::make('review')
+            RichEditor::make('review')
                 ->required()
                 ->columnSpanFull(),
 

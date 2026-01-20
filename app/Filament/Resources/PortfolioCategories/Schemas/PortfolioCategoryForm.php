@@ -20,6 +20,7 @@ class PortfolioCategoryForm
                 ->maxLength(255),
 
             RichEditor::make('description')
+                ->label('Description')
                 ->columnSpanFull(),
 
             FileUpload::make('cover_image')
@@ -44,15 +45,12 @@ class PortfolioCategoryForm
 
                     return $path;
                 })
-                ->columnSpanFull(),
+                ->columnSpanFull()
+                ->required(),
 
             Toggle::make('status')
                 ->default(true),
 
-            TextInput::make('sort_order')
-                ->label('Sort Order')
-                ->numeric()
-                ->default(0),
         ]);
     }
 }

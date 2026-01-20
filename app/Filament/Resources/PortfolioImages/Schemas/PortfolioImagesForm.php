@@ -46,10 +46,8 @@ class PortfolioImagesForm
                     return $path;
                 })
                 ->reorderable()
+                ->columnSpanFull()
                 ->required(),
-
-            TextInput::make('caption')
-                ->maxLength(255),
         ]);
     }
 }

@@ -40,6 +40,7 @@ class SpotlightsForm
 
                     return $path;
                 })
+                ->columnSpanFull()
                 ->required(),
         ]);
     }

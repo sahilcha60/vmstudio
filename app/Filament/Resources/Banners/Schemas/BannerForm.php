@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Banners\Schemas;
 
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Spatie\Image\Image;
@@ -17,7 +17,7 @@ class BannerForm
                 ->required()
                 ->maxLength(255),
 
-            Textarea::make('content')
+            RichEditor::make('content')
                 ->columnSpanFull(),
 
             FileUpload::make('image')
