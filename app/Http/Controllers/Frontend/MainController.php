@@ -10,6 +10,8 @@ use App\Models\Spotlight;
 use App\Models\Testimonial;
 use App\Models\Video;
 use SEOMeta;
+use Illuminate\Support\Str; // for Str::slug
+use Illuminate\Support\Arr; // ✅ correct Arr import
 
 class MainController extends Controller
 {
@@ -64,21 +66,49 @@ class MainController extends Controller
 
         $testimonials = Testimonial::where('status', true)->get();
 
-        // ✅ FIXED: no status column used here
-        $spotlights = Spotlight::orderBy('id', 'asc')
-            ->get()
-            ->shuffle();
+        // Get all spotlights
+        $spotlights = Spotlight::orderBy('id', 'asc')->get();
 
-        // Unique names for filter buttons
-        $spotlightNames = $spotlights->pluck('name')->unique();
+        // Collect all images from all spotlights
+        $allImages = collect(); // empty collection
+
+        foreach ($spotlights as $spotlight) {
+            if (is_array($spotlight->image)) {
+                foreach ($spotlight->image as $img) {
+                    $allImages->push([
+                        'src' => $img,
+                        'name' => $spotlight->name,
+                    ]);
+                }
+            }
+        }
+
+        // Shuffle the collection randomly
+        $allImages = $allImages->shuffle();
+
+        // Optionally, paginate manually (if you want 12 per page)
+        $page = request()->get('page', 1);
+        $perPage = 12;
+        $images = $allImages->forPage($page, $perPage);
+
+        // Convert to LengthAwarePaginator
+        $paginatedImages = new \Illuminate\Pagination\LengthAwarePaginator(
+            $images,
+            $allImages->count(),
+            $perPage,
+            $page,
+            [
+                'path' => request()->url(),
+                'query' => request()->query(),
+            ]
+        );
 
         $featuredPhotos = FeaturedPhoto::orderBy('id', 'asc')->get();
 
         return view('frontend.spotlight', compact(
             'categories',
             'testimonials',
-            'spotlights',
-            'spotlightNames',
+            'paginatedImages',
             'featuredPhotos'
         ));
     }
@@ -94,6 +124,7 @@ class MainController extends Controller
 
         $videos = Video::orderBy('id', 'asc')
             ->get()
+            ->paginate(4)
             ->shuffle();
 
         $featuredPhotos = FeaturedPhoto::orderBy('id', 'asc')->get();

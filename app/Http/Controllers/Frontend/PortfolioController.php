@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\PortfolioCategory;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use SEOMeta;
 
 class PortfolioController extends Controller
@@ -20,26 +22,19 @@ class PortfolioController extends Controller
     }
 
     // Show details of a single image/tool within a category
-    public function single($slug)
+    public function single(Request $request, $slug)
     {
-        // Fetch the category with first tool and all images
+        // Fetch category with tools only
         $category = PortfolioCategory::with([
             'tools' => function ($query) {
-                $query->orderBy('id', 'asc')->limit(1);
-            },
-            'images',
+                $query->orderBy('id', 'asc');
+            }
         ])
             ->where('slug', $slug)
             ->where('status', 1)
             ->firstOrFail();
 
-        // First tool for SEO
-        $portfolioTool = $category->tools->first(); // can be null
-
-        // First image for Blade gallery
-        $portfolioImage = $category->images->first(); // can be null
-
-        // Fetch all active categories for header
+        $portfolioTool = $category->tools->first(); // For SEO
         $categories = PortfolioCategory::where('status', 1)->get();
 
         // Set SEO meta
@@ -48,12 +43,35 @@ class PortfolioController extends Controller
             SEOMeta::setDescription($portfolioTool->meta_description);
         }
 
-        // Pass all variables to view
+        // Flatten all images into a single collection
+        $allImages = collect();
+        foreach ($category->images as $image) {
+            if (!empty($image->image_url) && is_array($image->image_url)) {
+                foreach ($image->image_url as $img) {
+                    $allImages->push([
+                        'image' => $img,
+                        'caption' => $image->caption ?? null
+                    ]);
+                }
+            }
+        }
+
+        // Manual pagination
+        $page = $request->get('page', 1);
+        $perPage = 4;
+        $images = new LengthAwarePaginator(
+            $allImages->forPage($page, $perPage),
+            $allImages->count(),
+            $perPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+
         return view('frontend.portfolio.single', compact(
             'category',
             'portfolioTool',
-            'portfolioImage',
-            'categories' // add this
+            'categories',
+            'images'
         ));
     }
 }
